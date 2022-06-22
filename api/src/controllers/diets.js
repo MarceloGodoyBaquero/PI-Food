@@ -22,7 +22,7 @@ getDiets = async (req, res) => {
         //busca las dietas insertadas en la db
         const dietSearch = await Diet.findAll()
         //responder con el resultado de la busqueda
-        res.send(dietSearch)
+        res.status(201).send(dietSearch)
 
     }catch (e){
         res.send('hubo un error recopilando los tipos de dietas').json(e)

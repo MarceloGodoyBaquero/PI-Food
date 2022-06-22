@@ -1,89 +1,76 @@
-const axios = require('axios').default
 const {Recipe, Diet} = require('../db')
-const {Op} = require("sequelize");
-const { MY_APY_KEY } = process.env
+const {apiWordSearch, dbSearch, concatenator,} = require("../helpers/helperFunctions");
 
-getRecipesByName = async (req, res, next) => {
-    const {name} = req.query
-
+getRecipesByName = async (req, res) => {
     try {
-        const respuestaSpoonacular = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${MY_APY_KEY}&query=${name}&number=5220`);
-        const respuestaPostgres = await Recipe.findAll({
-            where: {
-                name: {
-                    [Op.like]: `%${name}`
-                }
+        const {name} = req.query
+
+        const searchApi = await apiWordSearch(name)
+        const searchDb = await dbSearch(name)
+
+        if(!searchDb.length){
+            if(!searchApi.length){
+                res.status(404).json({Error: 'no se encontró nada con ese palabra'})
             }
-        })
-        if(!respuestaPostgres.length){
-            res.send(respuestaSpoonacular.data.results)
-
-        }
-        if(respuestaPostgres){
-            res.send(respuestaPostgres)
+            res.send(searchApi)
+        } else {
+            res.status(200).send(concatenator(searchDb, searchApi))
         }
 
-        res.send('No hay recetas con esa palabra')
-
-    } catch (e) {
-        next(e)
+    }   catch (e) {
+        console.log(e)
+        res.send(e)
     }
 }
 
 getRecipesById = async (req, res) => {
     const {id} = req.params
-
     try {
-
-        const respuestaPostgres = await Recipe.findByPk(id)
-
-        const respuestaSpoonacular = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${MY_APY_KEY}`)
-
-        if(respuestaPostgres){
-            await res.send(respuestaPostgres)
-
+        if(id.includes('-')){
+            const respuesta = await dbSearch(id)
+            res.status(200).send(respuesta)
+        } else {
+            const respuesta = await apiIdSearch(id)
+            res.status(200).send([respuesta])
         }
-
-        if(respuestaSpoonacular){
-            await res.send(respuestaSpoonacular.data)
-        }
-
     } catch (e) {
-        res.send('Hubo un error')
         console.log(e)
+        res.send(e)
     }
 }
 
 postRecipe = async (req, res) => {
-    const {healthScore, title, image, summary, diets, steps} = req.body
+    const {healthScore, title, image, summary, diets, analyzedInstructions} = req.body
     try {
+        //inserto la receta en la db
         const nRecipe = await Recipe.create({
             healthScore,
             title,
             image,
             summary,
             diets,
-            steps
+            analyzedInstructions
         })
-
+        //recorro el array de dietas y por cada valor id asocio la Recipe y Diet, en Recipe_diet
         for(let i = 0; i < diets.length; i++) {
             await nRecipe.addDiet(diets[i], {through: 'Recipe_diet'})
         }
-
+        // busco la receta y le incluyo la tabla Diet para poder ver las asociaciones correctamente.
         const Recipes_diets = await Recipe.findOne({
             where: {
                 title: req.body.title
             },
             include: Diet
         })
+        // devuelvo la búsqueda
 
-        res.json(Recipes_diets)
+        res.status(201).send(Recipes_diets)
 
     } catch (e) {
-        console.log(e)
         res.send(e)
     }
 }
+
 
 module.exports = {
     getRecipesByName,
