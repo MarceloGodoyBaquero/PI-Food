@@ -10,7 +10,6 @@ getDiets = async (req, res) => {
         const busqueda = respuesta.data.results.flatMap(r => r.diets)
         // los filtra para que no se repitan
         let resultadoFinal = [... new Set (busqueda)]
-
         //itera el Set y por cada elemento crear una entrada en la db
         for (let i = 0; i < resultadoFinal.length; i++) {
             await Diet.findOrCreate({
