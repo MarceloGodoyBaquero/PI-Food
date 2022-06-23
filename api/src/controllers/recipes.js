@@ -1,11 +1,11 @@
 const {Recipe, Diet} = require('../db')
-const {apiWordSearch, dbSearch, concatenator,} = require("../helpers/helperFunctions");
+const {apiWordSearch, dbSearch, concatenator, apiIdSearch} = require("../helpers/helperFunctions");
 
 getRecipesByName = async (req, res) => {
     try {
         const {name} = req.query
 
-        const searchApi = await apiWordSearch(name)
+        const searchApi = await apiWordSearch(name) //  tengo que corregir este, no se puede usar el query de name!
         const searchDb = await dbSearch(name)
 
         if(!searchDb.length){
@@ -53,7 +53,7 @@ postRecipe = async (req, res) => {
         })
         //recorro el array de dietas y por cada valor id asocio la Recipe y Diet, en Recipe_diet
         for(let i = 0; i < diets.length; i++) {
-            await nRecipe.addDiet(diets[i], {through: 'Recipe_diet'})
+            await nRecipe.addDiet(diets[i], {through: 'Recipe_diet'}) // mixings de las relaciones
         }
         // busco la receta y le incluyo la tabla Diet para poder ver las asociaciones correctamente.
         const Recipes_diets = await Recipe.findOne({

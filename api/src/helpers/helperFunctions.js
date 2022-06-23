@@ -42,8 +42,9 @@ dbSearch = async (param) => {
 }
 
 apiWordSearch = async (param) => {
-        const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${MY_APY_KEY}&addRecipeInformation=true&query=${param}`)
-        return apiResultMaper(result.data.results)
+    const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${MY_APY_KEY}&addRecipeInformation=true&number=100`)
+    const mapeoData = await apiResultMaper(result.data.results)
+    return mapeoData.filter(r => r.title.includes(param))
 }
 
 apiIdSearch = async (id) => {
