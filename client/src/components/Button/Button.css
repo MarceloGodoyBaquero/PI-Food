@@ -1,0 +1,62 @@
+.Landing{
+    background-color: #c0e0ab;
+    border-color: transparent;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.Landing:hover{
+    background-color: #ffb000;
+    transition: 0.4s;
+}
+
+.Home {
+    margin: 0;
+    padding: 0;
+    height: 70px;
+    border-color: transparent;
+    background-color: transparent;
+    background-image: url('/src/images/Regular_blob_yellow.svg');
+    background-repeat: no-repeat;
+    background-size: 100px;
+    background-position: center;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.Home:hover {
+    font-size: 40px;
+    transition-duration: 0.4s;
+    text-decoration: underline
+}
+
+.Search {
+    background-color: #c0e0ab;
+    border-color: transparent;
+    padding: 10px;
+    border-radius: 0 20px 20px 0;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.Search:hover {
+    background-color: #ffb000;
+    transition-duration: 0.4s;
+}
+
+.Create {
+    background-color: #ffb000;
+    border-color: transparent;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: larger;
+    cursor: pointer;
+}
+
+.Create:hover {
+    background-color: #c0e0ab;
+    transition-duration: 0.4s;
+}

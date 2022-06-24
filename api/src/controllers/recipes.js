@@ -1,11 +1,31 @@
 const {Recipe, Diet} = require('../db')
 const {apiWordSearch, dbSearch, concatenator, apiIdSearch} = require("../helpers/helperFunctions");
 
+getRecipes = async (req,res) => {
+    try {
+        const searchApi = await apiWordSearch()
+        const searchDb = await dbSearch()
+
+        if(!searchDb.length){
+            if(!searchApi.length){
+                res.status(404).json({Error: 'no se encontró nada con ese palabra'})
+            }
+            res.send(searchApi)
+        } else {
+            res.status(200).send(concatenator(searchDb, searchApi))
+        }
+
+    } catch (e) {
+        console.log(e)
+        res.send(e)
+    }
+}
+
 getRecipesByName = async (req, res) => {
     try {
         const {name} = req.query
 
-        const searchApi = await apiWordSearch(name) //  tengo que corregir este, no se puede usar el query de name!
+        const searchApi = await apiWordSearch(name)
         const searchDb = await dbSearch(name)
 
         if(!searchDb.length){
@@ -73,6 +93,7 @@ postRecipe = async (req, res) => {
 
 
 module.exports = {
+    getRecipes,
     getRecipesByName,
     getRecipesById,
     postRecipe

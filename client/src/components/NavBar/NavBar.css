@@ -1,0 +1,11 @@
+.NavBarContainer {
+    margin: 0;
+    padding: 0;
+    width: auto;
+    height: 70px;
+    background-color: #c0e0ab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 10px 0 10px #343434;
+}

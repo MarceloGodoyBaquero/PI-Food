@@ -1,0 +1,27 @@
+.SearchBarContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+
+.SearchBarInputContainer {
+    margin-top: 30px;
+    margin-right: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 70%;
+}
+
+.SearchBarInput {
+    border-radius: 20px 0 0 20px;
+    width: 100%;
+    font-size: medium;
+    text-align: center;
+}
+
+.SearchBarButtonContainer{
+    margin-top: 30px;
+}

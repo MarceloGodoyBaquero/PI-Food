@@ -33,6 +33,10 @@ apiResultMaper = async (respuesta) => {
 }
 
 dbSearch = async (param) => {
+    if(!param){
+        const result = await Recipe.findAll()
+        return dbResultMaper(result)
+    }
     if(param.includes('-', 23)) {
         const result = await Recipe.findOne({where: {id: param}, include: Diet})
         return dbResultMaper([result])
@@ -42,6 +46,10 @@ dbSearch = async (param) => {
 }
 
 apiWordSearch = async (param) => {
+    if(!param){
+        const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${MY_APY_KEY}&addRecipeInformation=true&number=100`)
+        return await apiResultMaper(result.data.results)
+    }
     const result = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${MY_APY_KEY}&addRecipeInformation=true&number=100`)
     const mapeoData = await apiResultMaper(result.data.results)
     return mapeoData.filter(r => r.title.includes(param))
