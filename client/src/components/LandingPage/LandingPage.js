@@ -1,7 +1,3 @@
-// Pagina inicial: deben armar una landing page con
-//      Alguna imagen de fondo representativa al proyecto
-//      Botón para ingresar al home (Ruta principal)
-
 import Button from '../Button/Button'
 import '../LandingPage/LandingPage.css'
 import {useEffect} from "react";
@@ -11,7 +7,6 @@ import {getDiets} from '../../redux/actions'
 
 export default function LandingPage(){
     const dispatch = useDispatch()
-
 
     useEffect(() => {
         dispatch(getDiets())
@@ -27,7 +22,7 @@ export default function LandingPage(){
                 <h2 className={'LandingSubtitle'}>
                     Your Online Recipes Book
                 </h2>
-                <Button btnName={'Lets Cook!'} btnStyle={'Landing'}/>
+                <Button btnType={'button'} btnName={'Lets Cook!'} btnStyle={'Landing'}/>
             </div>
         </div>
     )

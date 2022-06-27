@@ -20,6 +20,11 @@ export default function reducer(state=initialState, action){
                 ...state,
                 Recipes: action.payload
             }
+            case "POST_RECIPE":
+                return{
+                    ...state,
+                    RecipeCreation: action.payload
+                }
         default:
             return state
     }

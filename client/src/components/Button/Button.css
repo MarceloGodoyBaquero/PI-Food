@@ -1,6 +1,7 @@
 .Landing{
-    background-color: #c0e0ab;
-    border-color: transparent;
+    border-color: #94e06b;
+    background-color: transparent;
+    border-style: solid;
     padding: 10px;
     border-radius: 20px;
     font-size: larger;
@@ -8,7 +9,7 @@
 }
 
 .Landing:hover{
-    background-color: #ffb000;
+    background-color: #94e06b;
     transition: 0.4s;
 }
 
@@ -34,8 +35,9 @@
 }
 
 .Search {
-    background-color: #c0e0ab;
-    border-color: transparent;
+    background-color: transparent;
+    border-color: #94e06b;
+    border-style: solid;
     padding: 10px;
     border-radius: 0 20px 20px 0;
     font-size: larger;
@@ -43,20 +45,43 @@
 }
 
 .Search:hover {
-    background-color: #ffb000;
+    background-color: #94e06b;
     transition-duration: 0.4s;
 }
 
-.Create {
-    background-color: #ffb000;
-    border-color: transparent;
+.Create, .Upload {
+    border-color: #ffb000;
+    background-color: transparent;
     border-radius: 20px;
     padding: 10px;
     font-size: larger;
     cursor: pointer;
+    border-style: solid;
+}
+
+.Upload:hover {
+    background-color: #ffb000;
+    transition-duration: 0.4s;
 }
 
 .Create:hover {
-    background-color: #c0e0ab;
+    background-color: #ffb000;
+    transition-duration: 0.4s;
+}
+
+.Reset {
+    background-color: transparent;
+    color: black;
+    border-width: 2px;
+    border-color: #ff004d;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: larger;
+    cursor: pointer;
+    border-style: solid;
+}
+
+.Reset:hover {
+    background-color: #ff004d;
     transition-duration: 0.4s;
 }

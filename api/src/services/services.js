@@ -34,7 +34,7 @@ apiResultMaper = async (respuesta) => {
 
 dbSearch = async (param) => {
     if(!param){
-        const result = await Recipe.findAll()
+        const result = await Recipe.findAll({include: Diet})
         return dbResultMaper(result)
     }
     if(param.includes('-', 23)) {

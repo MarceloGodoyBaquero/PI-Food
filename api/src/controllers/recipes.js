@@ -1,5 +1,5 @@
 const {Recipe, Diet} = require('../db')
-const {apiWordSearch, dbSearch, concatenator, apiIdSearch} = require("../helpers/helperFunctions");
+const {apiWordSearch, dbSearch, concatenator, apiIdSearch} = require("../services/services");
 
 getRecipes = async (req,res) => {
     try {
@@ -11,6 +11,7 @@ getRecipes = async (req,res) => {
                 res.status(404).json({Error: 'no se encontró nada con ese palabra'})
             }
             res.send(searchApi)
+        res.send(searchDb)
         } else {
             res.status(200).send(concatenator(searchDb, searchApi))
         }
@@ -61,6 +62,7 @@ getRecipesById = async (req, res) => {
 
 postRecipe = async (req, res) => {
     const {healthScore, title, image, summary, diets, analyzedInstructions} = req.body
+    console.log(req.body)
     try {
         //inserto la receta en la db
         const nRecipe = await Recipe.create({
