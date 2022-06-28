@@ -1,14 +1,18 @@
 .CardViewerContainer{
-    width: 100%;
+    width: auto;
     height: 100vh;
     background-color: #343434;
+
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
+
+
 }
 
 .Grid{
     display: grid;
-    gap: 1px;
-    grid-template-columns: repeat(3, auto);
+    gap: 15px;
+    grid-template-columns: repeat(3, minmax(500px, 0.5fr));
 }

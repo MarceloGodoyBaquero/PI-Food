@@ -22,7 +22,7 @@ function App() {
         <Route exact path='/home' component={Home}/>
 
         <Route path='/recipe/details/:id' component={NavBar}/>
-        <Route exact path='/recipe/details/:id' component={RecipeDetail}/>
+        <Route path='/recipe/details/:id' component={RecipeDetail}/>
 
         <Route path='/recipe/create' component={NavBar}/>
         <Route exact path='/recipe/create' component={RecipeCreator}/>

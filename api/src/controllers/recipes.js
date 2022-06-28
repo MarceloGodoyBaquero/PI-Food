@@ -11,7 +11,6 @@ getRecipes = async (req,res) => {
                 res.status(404).json({Error: 'no se encontró nada con ese palabra'})
             }
             res.send(searchApi)
-        res.send(searchDb)
         } else {
             res.status(200).send(concatenator(searchDb, searchApi))
         }
@@ -52,7 +51,7 @@ getRecipesById = async (req, res) => {
             res.status(200).send(respuesta)
         } else {
             const respuesta = await apiIdSearch(id)
-            res.status(200).send([respuesta])
+            res.status(200).send(respuesta[0])
         }
     } catch (e) {
         console.log(e)

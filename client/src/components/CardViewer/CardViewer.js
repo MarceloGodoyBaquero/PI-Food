@@ -3,20 +3,40 @@ import './CardViewer.css'
 import Card from "../Card/Card";
 import {useSelector} from "react-redux";
 
-export default function CardViewer() {
-    const RecipesList = useSelector(state => state.Recipes)
-    const RecipesMap = RecipesList.map(e => <Card
-        key={e.id}
-        title={e.title}
-        image={e.image}
-        diets={e.diets}
-    />)
+export default function CardViewer(props) {
+    //pagination
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const [recipesPerPage] = React.useState(9);
 
-    return (<div>
-            <div className={'CardViewerContainer'}>
+    const indexOfLastRecipe = currentPage * recipesPerPage;
+    const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage;
+
+    const currentRecipes = useSelector(state => state.Recipes.slice(indexOfFirstRecipe, indexOfLastRecipe));
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    //end pagination
+
+    return (
+        <div >
+            <div className='CardViewerContainer'>
                 <div className={'Grid'}>
-                    {RecipesMap}
+                    {currentRecipes.map((e, index) => (
+                        <Card
+                            key={index}
+                            id={e.id}
+                            title={e.title}
+                            image={e.image}
+                            diets={e.diets}
+                        />
+                    ))}
                 </div>
             </div>
-        </div>)
+            <div className="pagination">
+
+                <button onClick={() => paginate(currentPage - 1)}>Previous</button>
+                <button onClick={() => paginate(currentPage + 1)}>Next</button>
+            </div>
+        </div>
+    );
 }
+

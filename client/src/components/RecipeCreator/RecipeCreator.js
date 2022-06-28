@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import './RecipeCreator.css';
 
 
-export default function RecipeCreator(props){
+export default function RecipeCreator(){
 
     const dispatch = useDispatch()
     const DietsList = useSelector(state => state.Diets)
@@ -20,7 +20,7 @@ export default function RecipeCreator(props){
         image: '',
         summary: '',
         diets: [],
-        analyzedInstructions: []
+        analyzedInstructions: [],
     })
 
     const DietsMapping = DietsList.map(d =>
@@ -45,16 +45,23 @@ export default function RecipeCreator(props){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(postRecipe(input))
-        alert('Recipe created!')
-        setInput({
-            healthScore: 0,
-            title: '',
-            image: '',
-            summary: '',
-            diets: [],
-            analyzedInstructions: []
-        })
+        if(input.title.includes('-')){
+            alert('The Title cant contain -')
+        }
+        if(!input.title || !input.summary){
+            alert('Please fill in title and summary fields')
+        } else {
+            window.confirm(`Recipe ${input.title} was created!`)
+            dispatch(postRecipe(input))
+            setInput({
+                healthScore: 0,
+                title: '',
+                image: '',
+                summary: '',
+                diets: [],
+                analyzedInstructions: [],
+            })
+        }
     }
 
     return(
@@ -65,7 +72,7 @@ export default function RecipeCreator(props){
             </div>
 
             <form className={'formContainer'} onSubmit={(e) => handleSubmit(e)}>
-                <p className={'formMessage'}> Los campos marcados con <span className={'asterisk'}>*</span> son obligatorios</p>
+                <p className={'formMessage'}> Fields marked with <span className={'asterisk'}>*</span> are required</p>
                 <div className={'inputContainer'}>
                     <label className={'inputLabel'}>Title<span className={'asterisk'}>*</span> </label>
 
@@ -113,7 +120,8 @@ export default function RecipeCreator(props){
                         className={'inputField'}
                         name={'summary'}
                         value={input.summary}
-                        placeholder={'Describe your recipe!'}/>
+                        placeholder={'Describe your recipe!'}
+                    />
                 </div>
 
                 <div className={'inputContainer'}>
@@ -133,11 +141,9 @@ export default function RecipeCreator(props){
                 </div>
                 <Button btnType={'submit'} btnName={'Create'} btnStyle={'Create'}/>
             </form>
-
         </div>
     )
 }
-
 
 
 

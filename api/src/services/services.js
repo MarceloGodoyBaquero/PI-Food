@@ -39,7 +39,8 @@ dbSearch = async (param) => {
     }
     if(param.includes('-', 23)) {
         const result = await Recipe.findOne({where: {id: param}, include: Diet})
-        return dbResultMaper([result])
+         const mapeo = await dbResultMaper([result])
+        return mapeo[0]
     }
     const resultado = await Recipe.findAll({where: {title: {[Op.like]: `%${param}%`}}, include: Diet})
     return dbResultMaper(resultado)

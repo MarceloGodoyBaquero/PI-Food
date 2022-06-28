@@ -1,30 +1,35 @@
-import {GET_DIETS, GET_RECIPES} from "../actions";
+import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL} from "../actions";
 
 const initialState = {
-    Diets:[],
-    Recipes:[],
-    RecipeCreation:[],
+    Diets: [],
+    Recipes: [],
+    RecipeCreation: [],
     RecipeInfo: [],
-    RecipesSearch:[]
+    RecipesSearch: []
 }
 
-export default function reducer(state=initialState, action){
-    switch(action.type){
+export default function reducer(state = initialState, action) {
+    switch (action.type) {
         case GET_DIETS:
-            return{
+            return {
                 ...state,
                 Diets: action.payload
             }
         case GET_RECIPES:
-            return{
+            return {
                 ...state,
                 Recipes: action.payload
             }
-            case "POST_RECIPE":
-                return{
-                    ...state,
-                    RecipeCreation: action.payload
-                }
+        case POST_RECIPE:
+            return {
+                ...state,
+                RecipeCreation: action.payload
+            }
+        case GET_RECIPE_DETAIL:
+            return {
+                ...state,
+                RecipeInfo: action.payload
+            }
         default:
             return state
     }

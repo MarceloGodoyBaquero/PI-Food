@@ -1,0 +1,33 @@
+* {
+font-family: 'Lato', sans-serif;
+    text-decoration:none;
+}
+
+
+.CardContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 1200px;
+    padding: 0;
+    background-color: white;
+}
+
+.CardTitle {
+    font-size: larger;
+    font-weight: bold;
+    text-align: center;
+}
+
+.CardTags {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0;
+    background-color: white;
+}
