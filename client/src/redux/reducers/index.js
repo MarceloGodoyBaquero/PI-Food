@@ -1,4 +1,4 @@
-import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL} from "../actions";
+import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL, SEARCH_RECIPES} from "../actions";
 
 const initialState = {
     Diets: [],
@@ -24,6 +24,11 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 RecipeCreation: action.payload
+            }
+        case SEARCH_RECIPES:
+            return{
+                ...state,
+                Recipes: action.payload
             }
         case GET_RECIPE_DETAIL:
             return {

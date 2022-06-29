@@ -1,6 +1,7 @@
 export const GET_DIETS = 'GET_DIETS'
 export const GET_RECIPES = 'GET_RECIPES'
 export const POST_RECIPE = 'POST_RECIPE'
+export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL'
 
 export function getDiets(){
@@ -8,7 +9,6 @@ export function getDiets(){
         const response = await fetch('http://localhost:3001/diets');
         const data = await response.json();
         dispatch({type: GET_DIETS, payload:data})
-        console.log(data)
     }
 }
 
@@ -39,10 +39,17 @@ export function getRecipeDetail(id){
         const response = await fetch(`http://localhost:3001/recipes/${id}`)
         const data = await response.json();
         dispatch({type: GET_RECIPE_DETAIL, payload:data});
-        console.log(data)
     }
 }
 
+export function searchRecipes(title){
+    return async(dispatch) => {
+        const response = await fetch(`http://localhost:3001/recipes/search?title=${title}`)
+        const data = await response.json()
+        dispatch({type: SEARCH_RECIPES, payload:data})
+        console.log(data)
+    }
+}
 
 
 

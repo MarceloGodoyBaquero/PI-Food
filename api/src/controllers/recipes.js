@@ -23,10 +23,10 @@ getRecipes = async (req,res) => {
 
 getRecipesByName = async (req, res) => {
     try {
-        const {name} = req.query
+        const {title} = req.query
 
-        const searchApi = await apiWordSearch(name)
-        const searchDb = await dbSearch(name)
+        const searchApi = await apiWordSearch(title)
+        const searchDb = await dbSearch(title)
 
         if(!searchDb.length){
             if(!searchApi.length){
