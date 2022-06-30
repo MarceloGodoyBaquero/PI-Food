@@ -12,7 +12,7 @@ export default function Card(props) {
         <div className={'CardContainer'}>
             <Link to={`/recipe/details/${props.id}`}>
             <div className={'CardImage'}>
-                <img src={image ? image : defImage} alt={title}/>
+                <img className={'Image'} src={image ? image : defImage} alt={title}/>
             </div>
             <div className={'ImageFooter'}>
                 <h3 className={'CardTitle'}> {title} </h3>

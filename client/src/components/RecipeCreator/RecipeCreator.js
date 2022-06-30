@@ -5,14 +5,14 @@ import Button from "../Button/Button";
 import './RecipeCreator.css';
 
 
-export default function RecipeCreator(){
+export default function RecipeCreator() {
 
     const dispatch = useDispatch()
     const DietsList = useSelector(state => state.Diets)
 
     useEffect(() => {
         dispatch(getDiets())
-    },[dispatch])
+    }, [dispatch])
 
     const [input, setInput] = useState({
         healthScore: 0,
@@ -28,10 +28,9 @@ export default function RecipeCreator(){
             <label key={d.id}>
                 <input
                     onChange={(e) => {
-                        if(e.target.checked){
+                        if (e.target.checked) {
                             setInput({...input, diets: [...input.diets, e.target.value]})
-                        }
-                        else{
+                        } else {
                             setInput({...input, diets: input.diets.filter(diet => diet !== e.target.value)})
                         }
                     }}
@@ -45,11 +44,14 @@ export default function RecipeCreator(){
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(input.title.includes('-')){
+        if (input.title.includes('-')) {
             alert('The Title cant contain -')
         }
-        if(!input.title || !input.summary){
+        if (!input.title || !input.summary) {
             alert('Please fill in title and summary fields')
+        if (input.healthScore < 0 || input.healthScore > 100) {
+            alert('Health Score must be between 0 and 100')
+        }
         } else {
             window.confirm(`Recipe ${input.title} was created!`)
             dispatch(postRecipe(input))
@@ -64,12 +66,8 @@ export default function RecipeCreator(){
         }
     }
 
-    return(
+    return (
         <div className={'recipeCreator'}>
-
-            <div className={'titleContainer'}>
-                <h1>LETS UPLOAD YOUR RECIPE!</h1>
-            </div>
 
             <form className={'formContainer'} onSubmit={(e) => handleSubmit(e)}>
                 <p className={'formMessage'}> Fields marked with <span className={'asterisk'}>*</span> are required</p>
@@ -96,7 +94,6 @@ export default function RecipeCreator(){
                         name={'healthScore'}
                         value={input.healthScore}
                         placeholder={'Enter the Health Score'}
-                        min="0" max="100"
                     />
                 </div>
 
@@ -113,7 +110,7 @@ export default function RecipeCreator(){
                 </div>
 
                 <div className={'inputContainer'}>
-                    <label  className={'inputLabel'}>Summary<span className={'asterisk'}>*</span> </label>
+                    <label className={'inputLabel'}>Summary<span className={'asterisk'}>*</span> </label>
 
                     <textarea
                         onChange={(e) => setInput({...input, summary: e.target.value})}
@@ -124,7 +121,7 @@ export default function RecipeCreator(){
                     />
                 </div>
 
-                <div className={'inputContainer'}>
+                <div className={'inputDietContainer'}>
                     <label className={'inputLabel'}>Diet type/s</label>
                     {DietsMapping}
                 </div>

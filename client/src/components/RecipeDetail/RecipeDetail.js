@@ -13,7 +13,7 @@ export default function RecipeDetail({match}) {
 
     useEffect(() => {
         dispatch(getRecipeDetail(match.params.id))
-        itsLoaded = false;
+        // itsLoaded = false;
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     let instructions = '';

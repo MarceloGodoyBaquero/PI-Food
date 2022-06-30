@@ -5,6 +5,7 @@ font-family: 'Lato', sans-serif;
 
 
 .CardContainer {
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -30,4 +31,9 @@ font-family: 'Lato', sans-serif;
     max-width: 1200px;
     padding: 0;
     background-color: white;
+}
+
+.Image {
+    height: 100px;
+    border-radius: 10px;
 }

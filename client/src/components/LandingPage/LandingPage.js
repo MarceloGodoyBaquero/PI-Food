@@ -2,16 +2,18 @@ import Button from '../Button/Button'
 import '../LandingPage/LandingPage.css'
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {getDiets} from '../../redux/actions'
+import {getDiets, getRecipes} from '../../redux/actions'
 
 
 export default function LandingPage(){
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getDiets())
-
-    },[dispatch])
+        dispatch(getDiets()) //guardo las dietas en estado global
+        dispatch(getRecipes()) // guard las recetas en estado global
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
 
     return(
         <div className={'LandingPage'}>

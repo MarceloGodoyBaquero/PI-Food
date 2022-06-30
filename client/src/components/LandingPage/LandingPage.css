@@ -3,12 +3,9 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
 }
 .LandingTextContainer{
     background-image: url('/src/images/Regular_blob.svg');
-    background-size: 700px;
     background-position: center;
     background-repeat: no-repeat;
     display: flex;
@@ -16,28 +13,34 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    width: 100vw;
 }
 
 .LandingTitle {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Abril Fatface', cursive;
     font-size: xxx-large;
+    font-weight: bolder;
 }
 
 .LandingSubtitle {
     margin-top: 20px;
     margin-bottom: 40px;
-    font-family: 'Lato', sans-serif;;
 }
 
 .Resaltado {
     color: #ffb000;
 }
 
-.Resaltado:hover {
-    color: #00ffba;
-    transition: 0.5s;
+@media (orientation: portrait) {
+    .LandingTextContainer{
+        background-size: 600px;
+        height: available;
+    }
+}
+
+@media (orientation: landscape) {
+    .LandingTextContainer{
+        background-size: 700px;
+    }
 }
