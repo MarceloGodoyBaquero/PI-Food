@@ -10,6 +10,12 @@ export default function RecipeCreator() {
   const dispatch = useDispatch()
   const {Diets} = useSelector(state => state)
   
+  function titleToUpCase(str) {
+    let strToArr = str.toLowerCase().split(' ')
+    let lowToUp = strToArr.map(p => p.charAt(0).toUpperCase() + p.slice(1))
+    return lowToUp.join(' ');
+  }
+  
   useEffect(() => {
     dispatch(getDiets())
   }, [dispatch])
@@ -48,7 +54,6 @@ export default function RecipeCreator() {
       }
     } else {
       window.confirm(`Recipe ${input.title} was created!`)
-      setInput({...input, title: input.title[0].toUpperCase()})
       dispatch(postRecipe(input))
       setInput({
         healthScore: 0, title: '', image: '', summary: '', diets: [], analyzedInstructions: [],
@@ -66,7 +71,7 @@ export default function RecipeCreator() {
           <label className={'inputLabel'}>Title<span className={'asterisk'}>*</span> </label>
           
           <input
-            onChange={(e) => setInput({...input, title: e.target.value})}
+            onChange={(e) => setInput({...input, title: titleToUpCase(e.target.value)})}
             className={'inputField'}
             type={'text'}
             name={'title'}

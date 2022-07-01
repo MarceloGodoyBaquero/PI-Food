@@ -1,12 +1,11 @@
 .RecipeBackground {
   display: flex;
   flex-direction: row;
-  /*align-items: center;*/
   justify-content: center;
   width: 100%;
   min-height: calc(100vh - 70px);
   height: fit-content;
-  background-color: #424242;
+  background-color: #333741;
   background-repeat: repeat;
 }
 
@@ -43,6 +42,7 @@
   height: fit-content;
   background-color: #f5f5f5;
   border-radius: 20px;
+  box-shadow: 0 0 10px #343434;
 }
 
 .RecipeHeader {

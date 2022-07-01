@@ -1,0 +1,38 @@
+.FiltersContainer {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: large;
+}
+
+@media (orientation: portrait) {
+  .FiltersContainer {
+    justify-content: space-between;
+    margin: 20px;
+  }
+}
+
+@media (orientation: landscape) {
+  .FiltersContainer {
+    justify-content: space-around;
+    margin: 20px;
+  }
+}
+
+.OrderSubContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 5px;
+  border: #94e06b solid;
+}
+
+.FilterSubContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 5px;
+  border: #94e06b  solid;
+}

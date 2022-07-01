@@ -1,39 +1,53 @@
 * {
-font-family: 'Lato', sans-serif;
-    text-decoration:none;
+    font-family: 'Lato', sans-serif;
 }
-
 
 .CardContainer {
-    border-radius: 20px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    padding: 20px;
+    margin: 15px;
+    width: 300px;
+    height: 1fr;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    max-width: 1200px;
-    padding: 0;
-    background-color: white;
+    box-shadow: 0 0 10px #343434;
 }
 
-.CardTitle {
-    font-size: larger;
-    font-weight: bold;
-    text-align: center;
+.CardImage {
+    display: flex;
+}
+
+.Image {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/*.ImageFooter {*/
+/*    text-decoration: none;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.CardTitle{*/
+/*    font-weight: bold;*/
+/*    margin-bottom: 10px;*/
+/*}*/
+
+.CardLink {
+    color: #FF0000;
+    text-decoration: none;
 }
 
 .CardTags {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     flex-wrap: wrap;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0;
-    background-color: white;
-}
-
-.Image {
-    height: 100px;
-    border-radius: 10px;
+    margin-top: 10px;
 }

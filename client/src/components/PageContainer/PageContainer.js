@@ -8,7 +8,6 @@ import {useSelector} from "react-redux";
 export default function PageContainer() {
   //pagination
   
-  
   const {RecipesFilter} = useSelector(state => state)
   const [currentPage, setCurrentPage] = useState(1);
   const [recipesPerPage] = useState(9);
@@ -25,8 +24,8 @@ export default function PageContainer() {
   
   return (
     <div>
-      <div className='CardViewerContainer'>
-        <div className={'Grid'}>
+      <div className='App-bg'>
+        <div className={'App-body'}>
           {currentRecipes.map((e, index) => (
             <Card
               key={index}
@@ -42,6 +41,7 @@ export default function PageContainer() {
         <Pagination recipesPerPage={recipesPerPage} totalRecipes={RecipesFilter.length} paginate={paginate}/>
       </div>
     </div>
+  
   );
 }
 

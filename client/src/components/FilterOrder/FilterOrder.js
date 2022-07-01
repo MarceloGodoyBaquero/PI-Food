@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getDiets} from "../../redux/actions";
 import {orderRecipes} from "../../redux/actions/SortActions";
 import {filterRecipes} from "../../redux/actions/FilterActions";
+import'./FilterOrder.css';
 
 export default function SearchBar() {
   const {Diets} = useSelector(state => state);
@@ -32,9 +33,9 @@ export default function SearchBar() {
   
   
   return (
-    <div>
+    <div className={'FiltersContainer'}>
       
-      <select name="Order" id="Order" onChange={(e) => {onChangeHandlerSort(e)}}>
+      <select className={'OrderSubContainer'} name="Order" id="Order" onChange={(e) => {onChangeHandlerSort(e)}}>
         <optgroup label="Reset">
         <option value={"Default"}>Order by (Default)</option>
         </optgroup>
@@ -48,8 +49,8 @@ export default function SearchBar() {
         </optgroup>
       </select>
       
-      <select name="Filter" id="Filter" onChange={(e) => {onChangeHandlerFilter(e)}}>
-        <option value="Filter by">Filter by Diet</option>
+      <select className={'FilterSubContainer'} name="Filter" id="Filter" onChange={(e) => {onChangeHandlerFilter(e)}}>
+        <option value="Default">Filter by Diet</option>
         <optgroup label="Type">
           <option value="Default">All</option>
           {diets}
