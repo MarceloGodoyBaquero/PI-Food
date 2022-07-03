@@ -1,53 +1,61 @@
 * {
-    font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .CardContainer {
-    border-radius: 5px;
-    background-color: #f6f6f6;
-    padding: 20px;
-    margin: 15px;
-    width: 300px;
-    height: 1fr;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-shadow: 0 0 10px #343434;
+  border-radius: 5px;
+  margin: 10px;
+  background-color: #f6f6f6;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 0 10px #343434;
+  height: 450px;
 }
 
 .CardImage {
-    display: flex;
+  display: flex;
 }
 
 .Image {
-    object-fit: cover;
-    height: 200px;
-    width: 100%;
-    border-radius: 5px;
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+  margin-bottom: 5px;
 }
 
-/*.ImageFooter {*/
-/*    text-decoration: none;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
+.ImageFooter {
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*align-items: center;*/
+}
 
-/*.CardTitle{*/
-/*    font-weight: bold;*/
-/*    margin-bottom: 10px;*/
-/*}*/
+.CardTitle {
+  color: black;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
 .CardLink {
-    color: #FF0000;
-    text-decoration: none;
+  color: #364133;
 }
 
 .CardTags {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+li {
+  color: black;
+  display: flex;
+}
+
+ul li::before {
+  content: "\2022";
+  color: green;
+  display: inline-block;
+  width: 1em;
+  margin-left: -0.9em;
+  font-weight: bold;
+  font-size:1.1rem;
 }

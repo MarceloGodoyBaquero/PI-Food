@@ -3,7 +3,6 @@ import Button from "../Button/Button";
 import './SearchBar.css'
 import {useDispatch} from "react-redux";
 import {searchRecipes} from "../../redux/actions";
-import FilterOrder from "../FilterOrder/FilterOrder";
 
 export default function SearchBar() {
   
@@ -23,7 +22,22 @@ export default function SearchBar() {
   }
   
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+    if(search.includes(' ', 0)) {
+      setSearch('')
+    return alert('The search Term cant initialize with a space')
+    }
+    
+    if(search.match(/^[!@#$%?/><,.:;'"^&*()_=+]+$/)) {
+      setSearch('')
+      return alert('The search Term cant contain special characters')
+    }
+    
+    if(!search.length) {
+      setSearch('')
+      return alert('Please enter a search term')
+    }
+    
     dispatch(searchRecipes(search));
     setSearch('')
   }
@@ -46,7 +60,7 @@ export default function SearchBar() {
       </form>
       
       <div className={'SearchBarButtonContainer'}>
-        <Button btnType={'button'} btnName={'Add A New Recipe +'} btnStyle={'Create'}/>
+        <Button btnType={'button'} btnName={'Add A New Recipe +'} btnStyle={'Create'} />
       </div>
     </div>
   )

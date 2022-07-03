@@ -1,63 +1,27 @@
 .App-bg {
-  background-color: #333741;
+  background-color: #364133;
   height: fit-content;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
 }
 
-
 @media (orientation: portrait) {
-
   .App-body {
-    display: flex;
+    height: 100%;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
-  .Cont-body {
-    font-size: xxx-large;
-    /*size and margin*/
-    margin: 10px;
-    height: 400px;
-
-    /*display*/
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
 }
 
 @media (orientation: landscape) {
-  .App-bg {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-
-  .App-body{
-    font-size: x-large;
-
+  .App-body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
-    flex-direction: column;
-    height: 100vh;
-  }
-
-  .Cont-body {
-
-    /*size and margin*/
-    margin: 10px;
-    height: auto;
-
-    /*display*/
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
 }
 
@@ -66,6 +30,5 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #333741;
-  bottom: 0;
+  margin: 10px;
 }

@@ -23,7 +23,6 @@ export default function Home() {
   
   return (
     <div>
-      
       <SearchBar/>
       <FilterOrder/>
       {!loading && <p className={'HomeLoading'}>Loading Recipe Data...</p>}

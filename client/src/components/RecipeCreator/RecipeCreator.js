@@ -43,16 +43,33 @@ export default function RecipeCreator() {
   </div>)
   
   const handleSubmit = (e) => {
+    
     e.preventDefault()
-    if (input.title.includes('-')) {
-      alert('The Title cant contain -')
+    
+    if (input.title.includes('-') || input.title.includes(' ', 0)) {
+      setInput({...input, title: ''})
+      return alert('The Title cant contain - or inicialice with a space')
     }
+  
+    if(input.title.match(/^[!@#$%^&*]+$/)) {
+      setInput({...input, title: ''})
+      return alert('The search Term cant contain special characters')
+    }
+  
+    if (input.summary.includes(' ', 0)) {
+      setInput({...input, summary: ''})
+      return alert('The Summary cant inicialice with a space')
+    }
+    
     if (!input.title || !input.summary) {
-      alert('Please fill in title and summary fields')
-      if (input.healthScore < 0 || input.healthScore > 100) {
-        alert('Health Score must be between 0 and 100')
-      }
-    } else {
+     return alert('Please fill in title and summary fields')
+    }
+  
+    if (input.healthScore < 0 || input.healthScore > 100) {
+     return alert('Health Score must be between 0 and 100')
+    }
+    
+    else {
       window.confirm(`Recipe ${input.title} was created!`)
       dispatch(postRecipe(input))
       setInput({

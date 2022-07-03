@@ -1,0 +1,23 @@
+.page-link {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin: 5px;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 15px;
+  border: #94e06b solid 2px;
+}
+
+.page-link:hover {
+  background-color: #94e06b;
+  border-radius: 0;
+  transition-duration: 0.4s;
+}
+
+.page-link:focus {
+  background-color: #ffb000;
+  border: #ffb000 solid 2px;
+  border-radius: 0;
+  transition-duration: 0.4s;
+}

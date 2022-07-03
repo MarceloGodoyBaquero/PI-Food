@@ -1,4 +1,6 @@
 *{
-    margin: 0px;
-    font-family: 'Lato', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+    margin: 0;
+    font-family: 'Karla', sans-serif;
+    text-decoration: none;
 }

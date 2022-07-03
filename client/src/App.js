@@ -6,6 +6,7 @@ import RecipeCreator from './components/RecipeCreator/RecipeCreator'
 import Home from './components/Home/Home'
 import RecipeDetail from './components/RecipeDetail/RecipeDetail'
 import NavBar from "./components/NavBar/NavBar";
+import NotFound from './components/NotFound/NotFound'
 
 import './App.css';
 
@@ -21,6 +22,8 @@ function App() {
         <Route path='/recipe' component={NavBar}/>
         <Route path='/recipe/details/:id' component={RecipeDetail}/>
         <Route exact path='/recipe/create' component={RecipeCreator}/>
+        
+        <Route component={NotFound}/>
       </Router>
     </div>
   );
