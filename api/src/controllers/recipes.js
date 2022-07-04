@@ -8,7 +8,7 @@ const getRecipes = async (req, res) => {
     
     if (!searchDb.length) {
       if (!searchApi.length) {
-        res.status(404).json({Error: 'no se encontró nada con ese palabra'})
+        res.status(404).json({Error: 'there was an error getting the recipes'})
       }
       res.send(searchApi)
     } else {
@@ -30,7 +30,7 @@ const getRecipesByName = async (req, res) => {
     
     if (!searchDb.length) {
       if (!searchApi.length) {
-        res.status(404).json({Error: 'no se encontró nada con ese palabra'})
+        res.status(404).json({Error: 'there is no recipe whit that search term'})
       }
       res.send(searchApi)
     } else {
@@ -55,7 +55,7 @@ const getRecipesById = async (req, res) => {
     }
   } catch (e) {
     console.log(e)
-    res.send(e)
+    res.status(404).send({Error: 'there is no recipe whit that id'})
   }
 }
 
@@ -64,7 +64,7 @@ const postRecipe = async (req, res) => {
   console.log(req.body)
   try {
     //inserto la receta en la db
-    const nRecipe = await Recipe.create({
+    const newRecipe = await Recipe.create({
       healthScore,
       title,
       image,
@@ -72,16 +72,11 @@ const postRecipe = async (req, res) => {
       diets,
       analyzedInstructions
     })
-    //recorro el array de dietas y por cada valor id asocio la Recipe y Diet, en Recipe_diet
-    for (let i = 0; i < diets.length; i++) {
-      await nRecipe.addDiet(diets[i], {through: 'Recipe_diet'}) // mixings de las relaciones
-    }
-    // busco la receta y le incluyo la tabla Diet para poder ver las asociaciones correctamente.
+    await newRecipe.addDiets(diets, {through: 'Recipe_diet'}) //agrega las dietas a la receta es un mixin
     const Recipes_diets = await Recipe.findOne({
       where: {
         title: req.body.title
-      },
-      include: Diet
+      }, include: Diet
     })
     // devuelvo la búsqueda
     

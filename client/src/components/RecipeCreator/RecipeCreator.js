@@ -12,7 +12,9 @@ export default function RecipeCreator() {
   
   function titleToUpCase(str) {
     let strToArr = str.toLowerCase().split(' ')
+    console.log(strToArr)
     let lowToUp = strToArr.map(p => p.charAt(0).toUpperCase() + p.slice(1))
+    console.log(lowToUp)
     return lowToUp.join(' ');
   }
   

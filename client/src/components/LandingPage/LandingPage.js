@@ -11,9 +11,8 @@ export default function LandingPage(){
     useEffect(() => {
         dispatch(getDiets()) //guardo las dietas en estado global
         dispatch(getRecipes()) // guard las recetas en estado global
-        
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[])
+    },[dispatch])
 
     return(
         <div className={'LandingPage'}>

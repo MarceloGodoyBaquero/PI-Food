@@ -19,11 +19,10 @@ module.exports = (sequelize) => {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      // hacer un seter para prohibir guiones. y throw Error
-      // modal con error
     },
     image: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     summary: {
       type: DataTypes.TEXT,

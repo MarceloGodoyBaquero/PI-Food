@@ -14,16 +14,15 @@ function App() {
   return (
     <div className={'App'}>
       <Router>
+        {/*<Route component={NotFound}/>*/}
         <Route exact path={'/'} component={LandingPage}/>
-        
+  
         <Route path='/home' component={NavBar}/>
         <Route exact path='/home' component={Home}/>
-        
+  
         <Route path='/recipe' component={NavBar}/>
         <Route path='/recipe/details/:id' component={RecipeDetail}/>
         <Route exact path='/recipe/create' component={RecipeCreator}/>
-        
-        <Route component={NotFound}/>
       </Router>
     </div>
   );
