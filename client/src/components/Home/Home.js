@@ -3,7 +3,7 @@ import './Home.css';
 import SearchBar from "../SearchBar/SearchBar";
 import PageContainer from "../PageContainer/PageContainer";
 import FilterOrder from "../FilterOrder/FilterOrder";
-import {getRecipes} from "../../redux/actions";
+import {getRecipes} from "../../redux/actions/HttpActions";
 import {useDispatch, useSelector} from "react-redux";
 
 export default function Home() {

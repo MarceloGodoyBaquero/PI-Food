@@ -1,14 +1,13 @@
 
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDiets} from "../../redux/actions";
+import {getDiets} from "../../redux/actions/HttpActions";
 import {orderRecipes} from "../../redux/actions/SortActions";
 import {filterRecipes} from "../../redux/actions/FilterActions";
 import'./FilterOrder.css';
 
 export default function SearchBar() {
   const {Diets} = useSelector(state => state);
-  const {RecipesFilter} = useSelector(state => state);
   
   const dispatch = useDispatch();
   
@@ -31,7 +30,6 @@ export default function SearchBar() {
   function onChangeHandlerFilter(e) {
     e.preventDefault();
       dispatch(filterRecipes(e.target.value));
-    console.log('Filter',RecipesFilter)
   }
   
   return (

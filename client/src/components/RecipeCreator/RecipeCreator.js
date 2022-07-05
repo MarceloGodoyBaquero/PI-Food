@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDiets, postRecipe} from "../../redux/actions";
+import {getDiets, postRecipe} from "../../redux/actions/HttpActions";
 import Button from "../Button/Button";
 import './RecipeCreator.css';
 
@@ -12,9 +12,7 @@ export default function RecipeCreator() {
   
   function titleToUpCase(str) {
     let strToArr = str.toLowerCase().split(' ')
-    console.log(strToArr)
     let lowToUp = strToArr.map(p => p.charAt(0).toUpperCase() + p.slice(1))
-    console.log(lowToUp)
     return lowToUp.join(' ');
   }
   
@@ -22,7 +20,7 @@ export default function RecipeCreator() {
     if(!Diets.length){
       dispatch(getDiets())
     }
-  }, [dispatch])
+  }, [dispatch, Diets.length])
   
   const [input, setInput] = useState({
     healthScore: 0, title: '', image: '', summary: '', diets: [], analyzedInstructions: [],

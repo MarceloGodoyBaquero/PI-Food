@@ -1,8 +1,8 @@
 import Button from '../Button/Button'
-import '../LandingPage/LandingPage.css'
+import './LandingPage.css'
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getDiets, getRecipes} from '../../redux/actions'
+import {getDiets, getRecipes} from '../../redux/actions/HttpActions'
 
 export default function LandingPage() {
   

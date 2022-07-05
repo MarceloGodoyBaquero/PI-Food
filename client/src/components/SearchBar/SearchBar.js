@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Button from "../Button/Button";
 import './SearchBar.css'
 import {useDispatch} from "react-redux";
-import {searchRecipes} from "../../redux/actions";
+import {searchRecipes} from "../../redux/actions/HttpActions";
 
 export default function SearchBar() {
   
@@ -49,7 +49,6 @@ export default function SearchBar() {
           name={'search'}
           value={search}
           onChange={(e) => handleChange(e)}
-          
           className={'SearchBarInput'}
           type={'search'}
           placeholder={'Keyword'}

@@ -16,7 +16,7 @@ const getRecipes = async (req, res) => {
     }
     
   } catch (e) {
-    console.log(e)
+
     res.send(e)
   }
 }
@@ -38,8 +38,7 @@ const getRecipesByName = async (req, res) => {
     }
     
   } catch (e) {
-    console.log(e)
-    res.send(e)
+    res.send({Error: 'there was an error getting the recipes'})
   }
 }
 
@@ -54,14 +53,12 @@ const getRecipesById = async (req, res) => {
       return res.status(200).send(respuesta[0])
     }
   } catch (e) {
-    console.log(e)
     return res.status(404).send({Error: 'there is no recipe whit that id'})
   }
 }
 
 const postRecipe = async (req, res) => {
   const {healthScore, title, image, summary, diets, analyzedInstructions} = req.body
-  console.log(req.body)
   try {
     //inserto la receta en la db
     const newRecipe = await Recipe.create({
@@ -83,7 +80,7 @@ const postRecipe = async (req, res) => {
     res.status(201).send(Recipes_diets)
     
   } catch (e) {
-    res.send(e)
+    res.send({Error: 'there was an error posting the recipe'})
   }
 }
 

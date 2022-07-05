@@ -1,7 +1,6 @@
 export const FILTER_RECIPES = 'FILTER_RECIPES';
 
 export const filterRecipes = (filter) => (dispatch, getState) => {
-  console.log(filter);
   if(filter === "Default") {
     let recipes = getState().Recipes.slice(); // devuelvo una copia de Recipes, para no modificar el state
     return dispatch({

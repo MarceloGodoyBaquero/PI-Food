@@ -7,31 +7,31 @@ export const FILL_BACKUP = 'FILL_BACKUP'
 
 export function getDiets() {
   return async (dispatch) => {
-    const response = await fetch('http://localhost:3001/diets');
-    const data = await response.json();
-    dispatch({type: GET_DIETS, payload: data})
+    await fetch('http://localhost:3001/diets')
+      .then(response => response.json())
+      .then(data => dispatch({type: GET_DIETS, payload: data}))
   }
 }
 
 export function getRecipes() {
   return async (dispatch) => {
-    const response = await fetch('http://localhost:3001/recipes');
-    const data = await response.json();
-    dispatch({type: GET_RECIPES, payload: data})
+    await fetch('http://localhost:3001/recipes')
+      .then(response => response.json())
+      .then(data => dispatch({type: GET_RECIPES, payload: data}))
   }
 }
 
 export function postRecipe(recipe) {
   return async (dispatch) => {
-    const response = await fetch('http://localhost:3001/recipes/addRecipe', {
+    await fetch('http://localhost:3001/recipes/addRecipe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(recipe)
-    });
-    const data = await response.json();
-    dispatch({type: POST_RECIPE, payload: data})
+    })
+      .then(response => response.json())
+      .then(data => dispatch({type: POST_RECIPE, payload: data}))
   }
 }
 
@@ -40,7 +40,6 @@ export function getRecipeDetail(id) {
     await fetch(`http://localhost:3001/recipes/${id}`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         if (data.code === 402) {
           return alert('There is no more points to use the api')
         }
@@ -75,6 +74,8 @@ export function searchRecipes(title) {
       )
   }
 }
+
+
 
 
 

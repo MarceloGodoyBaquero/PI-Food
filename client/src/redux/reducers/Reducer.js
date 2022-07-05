@@ -1,4 +1,4 @@
-import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL, SEARCH_RECIPES, FILL_BACKUP} from "../actions";
+import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL, SEARCH_RECIPES, FILL_BACKUP} from "../actions/HttpActions";
 import {ORDER_RECIPES} from "../actions/SortActions";
 import {FILTER_RECIPES} from "../actions/FilterActions";
 

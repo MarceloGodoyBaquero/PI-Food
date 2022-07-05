@@ -1,8 +1,7 @@
 import React, {useEffect} from "react";
-import {getRecipeDetail} from "../../redux/actions";
+import {getRecipeDetail} from "../../redux/actions/HttpActions";
 import {useDispatch, useSelector} from "react-redux";
 import './RecipeDetail.css'
-// import {useHistory} from "react-router-dom";
 
 export default function RecipeDetail({match}) {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ export default function RecipeDetail({match}) {
     setTimeout(() => {
       setLoading(true)
     }, 3000)
-  }, [])
+  }, [dispatch, match.params.id])
   
   if (analyzedInstructions) {
     if (analyzedInstructions.length === 0) {
