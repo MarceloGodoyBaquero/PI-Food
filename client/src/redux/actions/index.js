@@ -3,6 +3,7 @@ export const GET_RECIPES = 'GET_RECIPES'
 export const POST_RECIPE = 'POST_RECIPE'
 export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL'
+export const FILL_BACKUP = 'FILL_BACKUP'
 
 export function getDiets() {
   return async (dispatch) => {
@@ -36,22 +37,44 @@ export function postRecipe(recipe) {
 
 export function getRecipeDetail(id) {
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:3001/recipes/${id}`)
-    const data = await response.json();
-    dispatch({type: GET_RECIPE_DETAIL, payload: data});
+    await fetch(`http://localhost:3001/recipes/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        if (data.code === 402) {
+          return alert('There is no more points to use the api')
+        }
+        if (data.Error) {
+          alert('that id dont exist, but you can try this recipe')
+          fetch('http://localhost:3001/recipes/716426')
+            .then(response => response.json())
+            .then(data => {
+              return dispatch({type: GET_RECIPE_DETAIL, payload: data})
+            })
+        }
+        return dispatch({type: GET_RECIPE_DETAIL, payload: data})
+      })
   }
 }
 
 export function searchRecipes(title) {
   return async (dispatch) => {
-    const response = await fetch(`http://localhost:3001/recipes/search?title=${title}`)
-    const data = await response.json()
-    dispatch({type: SEARCH_RECIPES, payload: data})
-    console.log(data)
+    await fetch(`http://localhost:3001/recipes/search?title=${title}`)
+      .then(response => response.json())
+      .then(
+        data => {
+          if (data.code === 402) {
+            return alert('There is no more points to use the api')
+          }
+          if (data.Error) {
+            alert('There is no recipe with that search term ')
+            return dispatch({type: FILL_BACKUP})
+          }
+          return dispatch({type: SEARCH_RECIPES, payload: data})
+        }
+      )
   }
 }
-
-
 
 
 

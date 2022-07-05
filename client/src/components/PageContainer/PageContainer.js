@@ -13,14 +13,14 @@ export default function PageContainer() {
   
   const indexOfLastRecipe = currentPage * recipesPerPage; //indice del ultimo elemento de la pag actual (9, 18, 27, 36, 45, 54, 63, 72, 81)
   const indexOfFirstRecipe = indexOfLastRecipe - recipesPerPage; //indice del primer elemento de la pag actual (0, 9, 18, 27, 36, 45, 54, 63, 72)
-  const currentRecipes = RecipesFilter.slice(indexOfFirstRecipe, indexOfLastRecipe) //recetas de la pag actual (9, 18, 27, 36, 45, 54, 63, 72, 81)
+  const currentRecipes = RecipesFilter.length > 0 && RecipesFilter.slice(indexOfFirstRecipe, indexOfLastRecipe) //recetas de la pag actual (9, 18, 27, 36, 45, 54, 63, 72, 81)
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //funcion para cambiar de pag y actualizar el state de currentPage y currentRecipes
   
   return (
     <div>
       <div className='App-bg'>
         <div className={'App-body'}>
-          {currentRecipes.map((e, index) => (
+          {currentRecipes.length > 0 && currentRecipes.map((e, index) => (
             <Card
               key={index}
               id={e.id}

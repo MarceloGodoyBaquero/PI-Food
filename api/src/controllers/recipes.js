@@ -30,11 +30,11 @@ const getRecipesByName = async (req, res) => {
     
     if (!searchDb.length) {
       if (!searchApi.length) {
-        res.status(404).json({Error: 'there is no recipe whit that search term'})
+        return res.status(404).json({Error: 'there is no recipe with that search term'})
       }
-      res.send(searchApi)
+      return res.send(searchApi)
     } else {
-      res.status(200).send(concatenator(searchDb, searchApi))
+      return res.status(200).send(concatenator(searchDb, searchApi))
     }
     
   } catch (e) {
@@ -48,14 +48,14 @@ const getRecipesById = async (req, res) => {
   try {
     if (id.includes('-')) {
       const respuesta = await dbSearch(id)
-      res.status(200).send(respuesta)
+      return res.status(200).send(respuesta)
     } else {
       const respuesta = await apiIdSearch(id)
-      res.status(200).send(respuesta[0])
+      return res.status(200).send(respuesta[0])
     }
   } catch (e) {
     console.log(e)
-    res.status(404).send({Error: 'there is no recipe whit that id'})
+    return res.status(404).send({Error: 'there is no recipe whit that id'})
   }
 }
 

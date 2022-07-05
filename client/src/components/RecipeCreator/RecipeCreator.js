@@ -19,7 +19,9 @@ export default function RecipeCreator() {
   }
   
   useEffect(() => {
-    dispatch(getDiets())
+    if(!Diets.length){
+      dispatch(getDiets())
+    }
   }, [dispatch])
   
   const [input, setInput] = useState({

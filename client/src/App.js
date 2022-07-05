@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import LandingPage from './components/LandingPage/LandingPage'
 import RecipeCreator from './components/RecipeCreator/RecipeCreator'
@@ -14,15 +14,16 @@ function App() {
   return (
     <div className={'App'}>
       <Router>
-        {/*<Route component={NotFound}/>*/}
-        <Route exact path={'/'} component={LandingPage}/>
-  
+        
         <Route path='/home' component={NavBar}/>
-        <Route exact path='/home' component={Home}/>
-  
         <Route path='/recipe' component={NavBar}/>
-        <Route path='/recipe/details/:id' component={RecipeDetail}/>
-        <Route exact path='/recipe/create' component={RecipeCreator}/>
+        <Switch>
+          <Route exact path={'/'} component={LandingPage}/>
+          <Route exact path='/home' component={Home}/>
+          <Route path='/recipe/details/:id' component={RecipeDetail}/>
+          <Route exact path='/recipe/create' component={RecipeCreator}/>
+          <Route component={NotFound}/>
+        </Switch>
       </Router>
     </div>
   );

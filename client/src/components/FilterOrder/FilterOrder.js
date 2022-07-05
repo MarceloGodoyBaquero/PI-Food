@@ -13,7 +13,10 @@ export default function SearchBar() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    dispatch(getDiets());
+    if (!Diets.length) {
+      dispatch(getDiets());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch])
   
   const diets = Diets.map(diet => {
@@ -30,7 +33,6 @@ export default function SearchBar() {
       dispatch(filterRecipes(e.target.value));
     console.log('Filter',RecipesFilter)
   }
-  
   
   return (
     <div className={'FiltersContainer'}>

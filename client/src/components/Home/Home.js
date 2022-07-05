@@ -4,29 +4,29 @@ import SearchBar from "../SearchBar/SearchBar";
 import PageContainer from "../PageContainer/PageContainer";
 import FilterOrder from "../FilterOrder/FilterOrder";
 import {getRecipes} from "../../redux/actions";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 export default function Home() {
   
   const dispatch = useDispatch();
-
-  const [loading, setLoading] = React.useState(false)
+  
+  const Recipes = useSelector(state => state.RecipesFilter)
+  
   
   useEffect(() => {
     dispatch(getRecipes())
-    setTimeout(() => {
-      setLoading(true)
-    }, 3000)
+      // setTimeout(() => {
+      //   setLoading(true)
+      // }, 3000)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
   
   return (
     <div>
       <SearchBar/>
       <FilterOrder/>
-      {!loading && <p className={'HomeLoading'}>Loading Recipe Data...</p>}
-      {loading && <PageContainer/>}
+      {Recipes.length === 0 && <p className={'HomeLoading'}>Loading Recipe Data...</p>}
+      {Recipes && <PageContainer/>}
     </div>
   )
 };
