@@ -4,6 +4,7 @@ export const POST_RECIPE = 'POST_RECIPE'
 export const SEARCH_RECIPES = 'SEARCH_RECIPES'
 export const GET_RECIPE_DETAIL = 'GET_RECIPE_DETAIL'
 export const FILL_BACKUP = 'FILL_BACKUP'
+export const CLEAN_RECIPE_DETAIL = 'CLEAN_RECIPE_DETAIL'
 
 export function getDiets() {
   return async (dispatch) => {
@@ -75,6 +76,11 @@ export function searchRecipes(title) {
   }
 }
 
+export function recipeDetailCleanup() {
+  return (dispatch) => {
+    return dispatch({type: CLEAN_RECIPE_DETAIL})
+  }
+}
 
 
 

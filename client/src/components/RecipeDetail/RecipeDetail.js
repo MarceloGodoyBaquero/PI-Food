@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {getRecipeDetail} from "../../redux/actions/HttpActions";
+import {getRecipeDetail, recipeDetailCleanup} from "../../redux/actions/HttpActions";
 import {useDispatch, useSelector} from "react-redux";
 import './RecipeDetail.css'
 
@@ -18,6 +18,7 @@ export default function RecipeDetail({match}) {
     setTimeout(() => {
       setLoading(true)
     }, 3000)
+    return () => dispatch(recipeDetailCleanup())
   }, [dispatch, match.params.id])
   
   if (analyzedInstructions) {

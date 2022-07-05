@@ -1,4 +1,4 @@
-import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL, SEARCH_RECIPES, FILL_BACKUP} from "../actions/HttpActions";
+import {GET_DIETS, GET_RECIPES, POST_RECIPE, GET_RECIPE_DETAIL, SEARCH_RECIPES, FILL_BACKUP, CLEAN_RECIPE_DETAIL} from "../actions/HttpActions";
 import {ORDER_RECIPES} from "../actions/SortActions";
 import {FILTER_RECIPES} from "../actions/FilterActions";
 
@@ -52,6 +52,11 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 RecipesFilter: action.payload
+            }
+        case CLEAN_RECIPE_DETAIL:
+            return {
+                ...state,
+                RecipeInfo: []
             }
         default:
             return state
